@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Car {
+        constructor(number, name) {
+            this.name = name;  //车信息
+            this.number = number;  //车牌号
+        }
+    }
+
+    //专车类
+    class Zhuanche extends Car {
+        constructor(number, name) {
+            super(number, name);
+            this.price = 2
+        }
+    }
+
+    //快车类
+    class Kuaiche extends Car {
+        constructor(number, name) {
+            super(number, name);
+            this.price = 1
+        }
+    }
+
+    //行程类
+    class Trip {
+        constructor(car) {
+            this.car = car
+        }
+
+        //显示车牌信息
+        start() {
+            console.log('行程开始.名称:' + this.car.name + ',车牌号:' + this.car.number)
+        }
+
+        end() {
+            console.log('行程结束.总计:' + this.car.price * 5)
+        }
+    }
+
+    var car = new Kuaiche('皖A000001', '大奔')
+    var trip = new Trip(car);
+
+    trip.start()
+    trip.end()
+</script>
+</body>
+</html>

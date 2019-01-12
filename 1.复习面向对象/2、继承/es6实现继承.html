@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象-继承</title>
+</head>
+<body>
+
+<p>f12打开控制台查看结果</p>
+
+<script>
+
+    /*---------------- ES6 实现继承 -------------------*/
+    //定义一个Person 类
+    class Person {
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        //定义一个run 方法
+        run() {
+            console.log(this.name + '正在跑步!!!')
+        }
+
+        showAge() {
+            console.log(this.name + '今年' + this.age + '岁')
+        }
+
+    }
+
+    //定义一个学生类
+    class Student extends Person {
+        constructor(name, age, school) {
+            super(name, age);
+            this.school = school;
+        }
+
+        //定义一个 显示学校的子类方法
+        showSchool() {
+            console.log(this.name + '在' + this.school + '上学')
+        }
+
+    }
+
+    let w = new Person('小王', 12)
+    w.run()
+    w.showAge()
+
+    let s = new Student('小孙', 20, 'xxx学校');
+    s.run();
+    s.showSchool();
+    s.showAge()
+
+    console.log('打印Person prototype', Person.prototype)
+    console.log('打印Student prototype', Student.prototype)
+
+    console.log('是否继承属性', Student.__proto__ === Person)
+    console.log('是否继承方法', Student.prototype.__proto__ === Person.prototype)
+
+
+
+</script>
+</body>
+</html>
