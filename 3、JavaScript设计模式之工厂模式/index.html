@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //商品类
+    class Product{
+        constructor(name){
+            this.name = name
+        }
+        init(){
+            alert(`init -- ${this.name}`)
+        }
+        fun1(){
+            alert('fun1')
+        }
+        fun2(){
+            alert('fun2')
+        }
+    }
+
+    //工厂类
+    class Creator{
+        create(name){
+           return new Product(name)
+        }
+    }
+
+    const c = new Creator();
+    const pro = c.create('汉堡包')
+    pro.init()
+    pro.fun1()
+
+</script>
+</body>
+</html>
