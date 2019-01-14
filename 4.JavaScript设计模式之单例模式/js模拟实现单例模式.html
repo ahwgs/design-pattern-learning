@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //js模拟实现单例模式
+    class SingleObject{
+        login(){
+            console.log('login....')
+        }
+    }
+    //定义一个SingleObject对象的getInstance静态方法
+    //注意getInstance是一个自执行函数 funa()()
+    SingleObject.getInstance = (function () {
+        let instance  //定义一个唯一对象
+        //闭包
+        return function () {
+            //如果instance 不存在 就只new一次
+            if(!instance){
+                instance = new SingleObject()
+            }
+            return instance
+        }
+        //返回一个instance
+    })()
+
+
+    let obj1 = SingleObject.getInstance()
+    obj1.login()
+
+
+    let obj2 = SingleObject.getInstance()
+    obj2.login()
+
+    console.log('obj1===obj2',obj1===obj2)
+
+    let obj3 = new SingleObject()
+    obj3.login()
+    console.log('obj1===obj3',obj1===obj3)
+</script>
+</body>
+</html>
