@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Person{
+        constructor(){
+            this.first = 'A'
+            this.last = 'B'
+        }
+
+        //装饰方法
+        @readOnly
+        name(){
+            return this.first +'-' + this.last
+        }
+    }
+    function readOnly(target,name,descriptor) {
+        //descriptor 属性描述对象
+        // {
+        //     value:specifiedFunction,
+        //     enmerable:false,
+        //     configurable:true,
+        //     writable:true
+        // }
+        descriptor.writable = false
+        return descriptor
+    }
+
+    const  p = new Person()
+    console.log(p.name())
+    //p.name = function(){} //报错  只读
+</script>
+</body>
+</html>
