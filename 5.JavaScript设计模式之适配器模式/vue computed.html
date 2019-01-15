@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link href="https://cdn.bootcss.com/vue/2.5.21/vue.js">
+<body>
+    <div id="app">
+        <div>正序:{{msg}}}</div>
+        <div>倒序:{{reverMsg}}</div>
+    </div>
+<script>
+    const vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'w候人兮猗'
+        },
+        computed:{
+            reverMsg:function () {
+                return this.msg.split().reverse().join('')
+            }
+        }
+    })
+</script>
+</body>
+</html>

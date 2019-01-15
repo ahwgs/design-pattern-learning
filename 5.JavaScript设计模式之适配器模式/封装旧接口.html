@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //自己封装的ajax 使用如下
+    ajax({
+        url:'/user/getData',
+        type:'post',
+        dataType:'json',
+        data:{
+            id:'1123'
+        }
+    })
+    .done(function () {
+
+    })
+
+    //但是项目之前是 $.ajax({...})
+    //现在要替换成自己封装的ajax 成本太高 故做一层适配
+    var $ = {
+        ajax:function (options) {
+            return ajax(options)
+        }
+    }
+</script>
+</body>
+</html>
