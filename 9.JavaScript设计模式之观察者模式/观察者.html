@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 主题 保存状态 状态变化之后触发所有观察者
+    class Subject{
+        constructor() {
+            this.state = 0
+            this.obsevers = []
+        }
+        getState(){
+            return this.state
+        }
+        setState(state){
+            this.state = state
+            this.notifyAllObservers()
+        }
+
+        notifyAllObservers(){
+            this.obsevers.forEach(observer=>{
+                observer.update()
+            })
+        }
+        attach(observer){
+            this.obsevers.push(observer)
+        }
+    }
+    //观察者
+    class Observer{
+        constructor(name,subject) {
+            this.name = name;
+            this.subject = subject
+            this.subject.attach(this)
+        }
+        update(){
+            console.log(this.name +'-----'+ this.subject.getState())
+        }
+    }
+
+    //测试
+    //初始化一个主题
+    let s = new Subject()
+    let ob1 = new Observer('ob1',s)
+    let ob2 = new Observer('ob2',s)
+    let ob3 = new Observer('ob3',s)
+
+    s.setState(1)
+    s.setState(2)
+    s.setState(3)
+</script>
+</body>
+</html>

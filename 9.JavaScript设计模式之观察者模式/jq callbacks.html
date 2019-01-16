@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var callbacks = $.Callback()
+        callbacks.add(function (info) {
+            console.log('fun1',info)
+        })
+        callbacks.add(function (info) {
+            console.log('fun2',info)
+        })
+        callbacks.add(function (info) {
+            console.log('fun3',info)
+        })
+        callbacks.fire('gogogo')
+        callbacks.fire('fire')
+    </script>
+</body>
+</html>

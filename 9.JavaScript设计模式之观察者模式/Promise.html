@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function loadImg(src) {
+            return new Promise((resolve, reject)=>{
+                const img = document.createElement('img');
+                img.onload = function () {
+                    resolve(img)
+                }
+                img.onerror = function () {
+                    reject('图片加载失败')
+                }
+                img.src = src
+            })
+        }
+
+        let src = ''
+        let result = loadImg(src)
+        result.then(function (img) {
+            console.log(img.width)
+            return img
+        }).then(function (img) {
+            console.log(img.height)
+        })
+    </script>
+</body>
+</html>
