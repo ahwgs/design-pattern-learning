@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //定义一个real 对象
+    let star = {
+        name:'w候人兮猗',
+        age:22,
+        phone:'15955041111'
+    }
+    //定义一个代理
+    let agent = new Proxy(star,{
+        get:function (target,key) {
+            if(key === 'phone'){
+                //返回代理的电话
+                return '1123123'
+            }
+            if(key === 'price'){
+                //原对象不做这件事 返会的是代理的
+                return '120000'
+            }
+            return target[key]
+        },
+        set:function (target, key, value) {
+            if(key === 'customPrice'){
+                if(value < 10000){
+                    alert('价格太低')
+                }else{
+                    target[key] = value
+                    return true
+                }
+            }
+        }
+    })
+
+    // 测试
+    console.log(agent.name)
+    console.log(agent.age)
+    console.log(agent.phone)
+    console.log(agent.price)
+
+    agent.customPrice = 15000000;
+    console.log(agent.customPrice)
+
+</script>
+</body>
+</html>

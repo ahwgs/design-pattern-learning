@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <a href="#">a1</a>
+    <a href="#">a2</a>
+    <a href="#">a3</a>
+    <a href="#">a4</a>
+    <a href="#">a5</a>
+</div>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+   $('#div1').click(function () {
+       var _this = this
+       setTimeout(function () {
+           //直接$(this) 的话当前this 不是 $('#div1')
+           $(_this).addClass('red')
+       },1000)
+   })
+
+    //使用代理
+   $('#div1').click(function () {
+       setTimeout($.proxy(function () {
+           //直接$(this) 的话当前this 不是 $('#div1')
+           $(this).addClass('red')
+       },this),1000);
+   })
+</script>
+</body>
+</html>
