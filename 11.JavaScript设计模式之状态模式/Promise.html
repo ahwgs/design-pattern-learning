@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/javascript-state-machine/2.0.0/state-machine.min.js"></script>
+<script>
+
+    let fsm = new StateMachine({
+        init: 'pending',
+        transactions: [
+            {
+                name: 'resolve',
+                from: 'pendinf',
+                to: 'fullfilled'
+            },
+            {
+                name: 'reject',
+                from: 'pending',
+                to: 'rejected'
+            },
+        ],
+        methods: {
+            //监听
+            //state 当前状态机实例
+            // data fsm.resolve(xxx) 传递的参数
+            onResolve: function (state,data) {
+                data.successList.forEach(fn=>fn())
+            },
+            onReject: function (state,data) {
+                data.failList.forEach(fn=>fn())
+            }
+        }
+    })
+
+    class MyPromise{
+        constructor(fn) {
+            this.successList = []
+            this.failList = []
+            fn(()=>{
+                //fsm状态机
+                fsm.resolve(this)
+            },()=>{
+                fsm.reject(this)
+            })
+        }
+        then(successFn,failFn){
+            this.successList.push(successFn)
+            this.failList.push(failFn)
+        }
+
+    }
+</script>
+</body>
+</html>

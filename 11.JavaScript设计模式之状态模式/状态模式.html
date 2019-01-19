@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class State {
+        constructor(color) {
+            this.color = color
+        }
+
+        handle(context) {
+            console.log('当前是' + this.color + '灯')
+            context.setState(this)
+        }
+    }
+    class Context{
+        constructor() {
+            this.state= null
+        }
+        getState(){
+            return this.state
+        }
+        setState(state){
+            this.state = state
+        }
+
+    }
+
+    //test
+    let context = new Context()
+    let g = new State('g')
+    let y = new State('y')
+    let r = new State('r')
+
+    //绿亮
+    g.handle(context)
+    context.getState()
+    //黄亮
+    y.handle()
+    context.getState()
+    //红亮
+    r.handle()
+    context.getState()
+</script>
+</body>
+</html>

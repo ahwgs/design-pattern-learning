@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/javascript-state-machine/2.0.0/state-machine.min.js"></script>
+</head>
+<body>
+<button id="btn1">按钮</button>
+<script>
+    //初始化状态机模型
+    let fsm = new StateMachine({
+        init: '收藏',
+        transactions: [
+            {
+                name: 'doStore',
+                from: '收藏',
+                to: '取消收藏'
+            },
+            {
+                name: 'deleteStore',
+                from: '取消收藏',
+                to: '收藏'
+            },
+        ],
+        methods: {
+            //监听
+            onDostore: function () {
+                alert('收藏成功')
+                updateText()
+                //other ... ajax
+            },
+            onDeleteStore: function () {
+                alert('取消收藏成功')
+                updateText()
+                //other ... ajax
+            }
+        }
+    })
+
+    let btn = document.getElementById('btn1')
+
+    btn.onclick(function () {
+        if(fsm.is('收藏')){
+            fsm.doStore()
+        }else{
+            fsm.deleteStore()
+        }
+    })
+
+    function updateText() {
+        btn.innerText = fsm.state
+    }
+
+</script>
+
+</body>
+</html>
