@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>jq each</p>
+<p>jq each</p>
+<p>jq each</p>
+<script>
+    var arr = [1,2,3]
+    var nodeList = document.getElementsByTagName('p')
+    var $p = $('p')
+
+    arr.forEach(function (item) {
+        console.log(item);
+    })
+
+    var i , length = nodeList.length
+    for (i = 0;i<length;i++){
+        console.log(nodeList[i]);
+    }
+
+    $p.each(function (key,p) {
+        console.log(key,p)
+    })
+    
+    //定义一个each 方法
+    function each(data) {
+        var $data = $(data) //生成迭代器
+        $data.each(function (key,val) {
+            console.log(key,val)
+        })
+    }
+
+    each(arr)
+    each(nodeList)
+    each($p)
+
+</script>
+</body>
+</html>

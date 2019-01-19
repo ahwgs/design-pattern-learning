@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //定义一个each 方法
+    function each(data) {
+        var $data = $(data) //生成迭代器
+        $data.each(function (key,val) {
+            console.log(key,val)
+        })
+    }
+
+    each(arr)
+    each(nodeList)
+    each($p)
+</script>
+</body>
+</html>

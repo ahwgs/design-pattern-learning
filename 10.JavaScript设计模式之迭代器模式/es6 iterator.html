@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //首先 返回[Symbol.Iterator]
+    function each(data) {
+        let iterator = data[Symbol.iterator]()
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        let item = {done:false}
+        while (!item.done){
+            item = iterator.next()
+            if(!item.done){
+                console.log(item.value)
+            }
+        }
+    }
+
+    function each2 (data){
+        for (let item of data){
+            console.log(item)
+        }
+    }
+    let arr = [1,2,3,4]
+    // let nodeList = document.getElementsByTagName('a')
+    let m = new Map()
+    m.set('a',100)
+    m.set('b',100)
+    m.set('c',100)
+
+    each(arr)
+    // each(nodeList)
+    each(m)
+    each2(arr)
+    // each(nodeList)
+    each2(m)
+</script>
+</body>
+</html>
